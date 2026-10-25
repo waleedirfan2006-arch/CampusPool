@@ -24,11 +24,13 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    align-items: center;
     background-image: radial-gradient(circle at 50% 0%, #1e1b4b 0%, transparent 40%);
 }
 
 /* Navbar */
 .navbar {
+    width: 100%;
     border-bottom: 1px solid var(--border-color);
     padding: 1.2rem 2.5rem;
     background: rgba(8, 11, 17, 0.9);
@@ -39,7 +41,7 @@ body {
 }
 
 .nav-container {
-    max-width: 1300px;
+    max-width: 1200px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -111,6 +113,7 @@ body {
 .hero {
     text-align: center;
     padding: 5rem 1.5rem 3rem 1.5rem;
+    max-width: 900px;
 }
 
 .hero h1 {
@@ -128,17 +131,16 @@ body {
 
 .hero p {
     color: var(--text-muted);
-    max-width: 750px;
-    margin: 0 auto;
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     line-height: 1.6;
 }
 
-/* Features Section First */
+/* Features Section (Centered 3-Column Layout) */
 .features-section {
     max-width: 1200px;
     margin: 2rem auto 5rem auto;
     padding: 0 2rem;
+    width: 100%;
 }
 
 .section-header {
@@ -172,35 +174,39 @@ body {
 .feature-card {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
-    padding: 2.2rem;
-    border-radius: 18px;
+    padding: 2.5rem 2rem;
+    border-radius: 20px;
     backdrop-filter: blur(12px);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     transition: all 0.3s ease;
 }
 
 .feature-card:hover {
     border-color: var(--border-hover);
-    transform: translateY(-4px);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
 }
 
 .f-icon {
-    font-size: 2rem;
+    font-size: 2.2rem;
     background: rgba(56, 189, 248, 0.1);
     border: 1px solid rgba(56, 189, 248, 0.2);
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 14px;
-    margin-bottom: 1.2rem;
+    border-radius: 16px;
+    margin-bottom: 1.5rem;
 }
 
 .feature-card h3 {
     font-size: 1.25rem;
     font-weight: 700;
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.8rem;
     color: var(--text-main);
 }
 
@@ -210,9 +216,9 @@ body {
     line-height: 1.6;
 }
 
-/* Calculator Section Second (Spacious & Full-Width) */
+/* Calculator Section (Centered & Spacious) */
 .calculator-section {
-    max-width: 850px;
+    max-width: 800px;
     margin: 0 auto 6rem auto;
     padding: 0 2rem;
     width: 100%;
@@ -224,7 +230,7 @@ body {
     padding: 3.5rem;
     border-radius: 24px;
     backdrop-filter: blur(16px);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
 }
 
 .calc-header {
@@ -321,6 +327,7 @@ body {
     font-weight: 800;
     margin-bottom: 1.2rem;
     color: var(--accent-color);
+    text-align: center;
 }
 
 .result-item {
@@ -363,6 +370,7 @@ body {
 
 /* Footer */
 footer {
+    width: 100%;
     text-align: center;
     padding: 2.5rem;
     border-top: 1px solid var(--border-color);
