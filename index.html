@@ -5,15 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CampusPool Pro - Advanced Carpool Expense Splitter</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Google Fonts for professional typography -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Top Navigation Bar -->
     <header class="navbar">
         <div class="nav-container">
             <div class="logo">
-                <span class="logo-icon">🚗</span>
+                <div class="logo-icon-wrapper">🚗</div>
                 <span class="logo-text">CampusPool<span class="badge">PRO</span></span>
             </div>
             <nav class="nav-links">
@@ -27,7 +26,7 @@
     <section class="hero">
         <div class="hero-content">
             <h1>Smart Commutes, <span class="gradient-text">Zero Friction.</span></h1>
-            <p>Calculate exact fuel splits based on distance, vehicle efficiency, fuel prices, transfer fees, and driver compensation.</p>
+            <p>Calculate exact fuel splits based on distance, vehicle efficiency, fuel prices, transfer fees, and driver compensation with absolute transparency.</p>
         </div>
     </section>
 
@@ -63,22 +62,22 @@
         <div class="calculator-card">
             <div class="calc-header">
                 <h2>Advanced Trip Calculator</h2>
-                <p>Fill in your route details below</p>
+                <p>Configure your route details below for an instant breakdown</p>
             </div>
 
             <div class="input-group">
                 <label for="totalKm">Total Distance Driven (km)</label>
-                <input type="number" id="totalKm" placeholder="e.g. 25" value="20">
+                <input type="number" id="totalKm" value="20">
             </div>
 
             <div class="input-row">
                 <div class="input-group">
                     <label for="fuelEff">Fuel Efficiency (km/L)</label>
-                    <input type="number" id="fuelEff" placeholder="e.g. 12" value="12">
+                    <input type="number" id="fuelEff" value="12">
                 </div>
                 <div class="input-group">
                     <label for="fuelPrice">Fuel Price (per Liter)</label>
-                    <input type="number" id="fuelPrice" placeholder="e.g. 280" value="280">
+                    <input type="number" id="fuelPrice" value="280">
                 </div>
             </div>
 
@@ -89,13 +88,13 @@
                 </div>
                 <div class="input-group">
                     <label for="driverIncome">Driver Compensation / Income</label>
-                    <input type="number" id="driverIncome" placeholder="e.g. 200" value="150">
+                    <input type="number" id="driverIncome" value="150">
                 </div>
             </div>
 
             <div class="input-group">
                 <label for="transferFee">Mobile Wallet Transfer Fee</label>
-                <input type="number" id="transferFee" placeholder="e.g. 20" value="15">
+                <input type="number" id="transferFee" value="15">
             </div>
 
             <button id="calculateBtn" class="primary-btn">Calculate Advanced Split</button>
