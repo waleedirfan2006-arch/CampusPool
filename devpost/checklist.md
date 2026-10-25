@@ -44,3 +44,5 @@ Activity mode: [live app and editor, explicit static fallback, focused alternati
 ## Revisions
 
 - Demo polish: form sits in a shadowed card, inputs are roomier for phone taps, and the result uses its own yellow-tinted panel. Math and stack are unchanged.
+- Demo shell: mock NED CampusPool nav, welcome line, and footer around the calculator (original PRD was one-screen, no chrome).
+- Result now includes a quiet line that the fuel split counts the driver (passengers + 1). Visual polish: gradient night sky, glass card, yellow button glow.

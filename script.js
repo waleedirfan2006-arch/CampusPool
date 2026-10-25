@@ -1,63 +1,78 @@
-const form = document.getElementById("fare-form");
-const fuelInput = document.getElementById("fuel");
-const passengersInput = document.getElementById("passengers");
-const feeInput = document.getElementById("fee");
-const hint = document.getElementById("hint");
-const result = document.getElementById("result");
-const totalOwedEl = document.getElementById("total-owed");
-const baseShareEl = document.getElementById("base-share");
-const feeShownEl = document.getElementById("fee-shown");
+// We wrap everything in DOMContentLoaded so the buttons 100% work!
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // Toggle Info Panel
+    document.getElementById('infoToggle').addEventListener('click', function() {
+        document.getElementById('infoPanel').classList.toggle('hidden');
+    });
 
-function parseIntegerField(raw, { allowEmpty = false } = {}) {
-  const trimmed = String(raw ?? "").trim();
-  if (trimmed === "") {
-    return allowEmpty ? { ok: true, value: 0 } : { ok: false };
-  }
-  if (!/^-?\d+$/.test(trimmed)) {
-    return { ok: false };
-  }
-  return { ok: true, value: Number.parseInt(trimmed, 10) };
-}
+    // Quick Fuel Add Buttons
+    const fuelInput = document.getElementById('fuel');
+    
+    document.getElementById('add500').addEventListener('click', function() {
+        const current = parseInt(fuelInput.value) || 0;
+        fuelInput.value = current + 500;
+    });
 
-function hideResult() {
-  result.hidden = true;
-  result.classList.remove("is-visible");
-}
+    document.getElementById('add1000').addEventListener('click', function() {
+        const current = parseInt(fuelInput.value) || 0;
+        fuelInput.value = current + 1000;
+    });
 
-function showError() {
-  hideResult();
-  hint.hidden = false;
-}
+    document.getElementById('clearFuel').addEventListener('click', function() {
+        fuelInput.value = '';
+    });
 
-function showResult(baseShare, fee, totalOwed) {
-  hint.hidden = true;
-  totalOwedEl.textContent = String(totalOwed);
-  baseShareEl.textContent = String(baseShare);
-  feeShownEl.textContent = String(fee);
-  result.hidden = false;
-  result.classList.remove("is-visible");
-  void result.offsetWidth;
-  result.classList.add("is-visible");
-}
+    // Passenger Stepper Logic (+ / -)
+    const passInput = document.getElementById('passengers');
+    
+    document.getElementById('plusPass').addEventListener('click', () => {
+        passInput.value = parseInt(passInput.value) + 1;
+    });
 
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
+    document.getElementById('minusPass').addEventListener('click', () => {
+        if(parseInt(passInput.value) > 1) {
+            passInput.value = parseInt(passInput.value) - 1;
+        }
+    });
 
-  const fuelParsed = parseIntegerField(fuelInput.value);
-  const passengersParsed = parseIntegerField(passengersInput.value);
-  const feeParsed = parseIntegerField(feeInput.value, { allowEmpty: true });
+    // Core Calculation Logic
+    document.getElementById('calculateBtn').addEventListener('click', function() {
+        const fuelInputVal = document.getElementById('fuel').value;
+        const passVal = document.getElementById('passengers').value;
+        const feeInputVal = document.getElementById('fee').value;
 
-  const fuelOk = fuelParsed.ok && fuelParsed.value > 0;
-  const passengersOk = passengersParsed.ok && passengersParsed.value >= 1;
-  const feeOk = feeParsed.ok && feeParsed.value >= 0;
+        const errorHint = document.getElementById('error-hint');
+        const resultContainer = document.getElementById('result-container');
+        
+        const fuel = parseInt(fuelInputVal);
+        const passengers = parseInt(passVal);
+        const fee = feeInputVal === '' ? 0 : parseInt(feeInputVal);
 
-  if (!fuelOk || !passengersOk || !feeOk) {
-    showError();
-    return;
-  }
+        // Check for errors
+        if (isNaN(fuel) || fuel <= 0) {
+            resultContainer.classList.add('hidden');
+            errorHint.classList.remove('hidden');
+            return;
+        }
 
-  const totalPeople = passengersParsed.value + 1;
-  const baseShare = Math.round(fuelParsed.value / totalPeople);
-  const totalOwed = baseShare + feeParsed.value;
-  showResult(baseShare, feeParsed.value, totalOwed);
+        errorHint.classList.add('hidden');
+
+        // Math calculation (Driver is added here)
+        const totalPeople = passengers + 1; 
+        const baseShare = Math.round(fuel / totalPeople);
+        const totalOwed = baseShare + fee;
+
+        document.querySelector('#final-amount span').textContent = totalOwed;
+        
+        // Explicit explanation for new users
+        document.getElementById('math-breakdown').innerHTML = 
+            `Divided among <strong>${totalPeople} total people</strong> (${passengers} passengers + 1 driver).<br> ${fuel} Rs ÷ ${totalPeople} = ${baseShare} Rs.`;
+            
+        document.getElementById('fee-breakdown').textContent = 
+            `(Base Share: ${baseShare} + Transfer Fee: ${fee})`;
+
+        resultContainer.classList.remove('hidden');
+    });
+
 });

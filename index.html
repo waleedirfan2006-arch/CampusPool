@@ -1,63 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Commute Fare Splitter</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <main class="page">
-      <h1>Commute Fare Splitter</h1>
-      <div class="card">
-        <form id="fare-form" novalidate>
-          <label for="fuel">Total Fuel Cost (Rs)</label>
-          <input
-            id="fuel"
-            name="fuel"
-            type="number"
-            inputmode="numeric"
-            placeholder="1000"
-            min="1"
-            step="1"
-          />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusPool Pro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+        <div class="nav-brand">
+            <span class="nav-logo">⚡</span> NED CampusPool
+        </div>
+        <div class="nav-links">
+            <span class="nav-item active">Dashboard</span>
+            <span class="nav-item">History</span>
+            <span class="nav-item">Settings</span>
+        </div>
+    </nav>
 
-          <label for="passengers">Number of Passengers (Excluding Driver)</label>
-          <input
-            id="passengers"
-            name="passengers"
-            type="number"
-            inputmode="numeric"
-            placeholder="3"
-            min="1"
-            step="1"
-          />
+    <main class="main-content">
+        <div class="layout-container">
+            <!-- Left Side: Landing Page Info -->
+            <div class="hero-section">
+                <div class="logo desktop-logo">🚗 CampusPool Pro</div>
+                <h1>Fair rides, <br><span class="highlight">zero math.</span></h1>
+                <p class="subtitle">The ultimate carpooling tool for students. Calculate exact shares instantly, factoring in the driver's contribution and transfer fees.</p>
+                
+                <div class="features-list">
+                    <div class="feature-item">
+                        <span class="icon">⛽</span>
+                        <div>
+                            <h4>Fair Fuel Splits</h4>
+                            <p>Automatically includes the driver in the math.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="icon">💸</span>
+                        <div>
+                            <h4>Transfer Fees Handled</h4>
+                            <p>No more arguing over mobile wallet transaction costs.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="icon">⚡</span>
+                        <div>
+                            <h4>Lightning Fast</h4>
+                            <p>Quick-tap buttons to calculate on the go.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-          <label for="fee">Mobile Transfer Fee (Rs)</label>
-          <input
-            id="fee"
-            name="fee"
-            type="number"
-            inputmode="numeric"
-            placeholder="10"
-            min="0"
-            step="1"
-          />
+            <!-- Right Side: The Interactive Calculator -->
+            <div class="app-shell">
+                <header>
+                    <div class="logo mobile-logo">🚗 CampusPool Pro</div>
+                    <button id="infoToggle" class="icon-btn">ℹ️ Help</button>
+                </header>
 
-          <button type="submit" id="calculate">Calculate</button>
-        </form>
-        <p id="hint" class="hint" hidden>
-          Please enter valid fuel and passenger amounts.
-        </p>
-      </div>
-      <div id="result" class="result" hidden>
-        <p class="owed">Each passenger owes: <span id="total-owed"></span></p>
-        <p class="breakdown">
-          (Base Share: <span id="base-share"></span> + Transfer Fee:
-          <span id="fee-shown"></span>)
-        </p>
-      </div>
+                <div class="card">
+                    <div id="infoPanel" class="info-panel hidden">
+                        <h3>How it works:</h3>
+                        <p>Enter the total fuel cost. We automatically add <strong>1 Driver</strong> to your passenger count so the fuel is split fairly among everyone in the car.</p>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="fuel">Total Fuel Cost (Rs)</label>
+                        <input type="number" id="fuel" placeholder="e.g. 2000" min="0">
+                        <div class="quick-actions">
+                            <button id="add500" class="chip">+500</button>
+                            <button id="add1000" class="chip">+1000</button>
+                            <button id="clearFuel" class="chip chip-clear">Clear</button>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Number of Passengers (Excluding Driver)</label>
+                        <div class="stepper">
+                            <button id="minusPass" class="step-btn">−</button>
+                            <input type="number" id="passengers" value="2" readonly>
+                            <button id="plusPass" class="step-btn">+</button>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="fee">Transfer Fee (Rs) <span class="optional">- Optional</span></label>
+                        <input type="number" id="fee" placeholder="e.g. 10" min="0">
+                    </div>
+                    
+                    <button id="calculateBtn">Calculate Split</button>
+
+                    <div id="error-hint" class="hidden">Please enter valid fuel amounts.</div>
+
+                    <div id="result-container" class="hidden">
+                        <h2 id="final-amount">Each passenger owes: <span></span> Rs</h2>
+                        <div class="breakdown-box">
+                            <p id="math-breakdown"></p>
+                            <p id="fee-breakdown"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
+
+    <!-- Bottom Footer -->
+    <footer class="app-footer">
+        
+        <div class="footer-links">
+            <span>Privacy Policy</span> | <span>Terms of Service</span>
+        </div>
+    </footer>
+    
     <script src="script.js"></script>
-  </body>
+</body>
 </html>
