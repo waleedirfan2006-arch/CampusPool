@@ -17,7 +17,7 @@
             </div>
             <nav class="nav-links">
                 <a href="#features">Features</a>
-                <a href="#calculator" class="nav-btn-highlight">Launch App</a>
+                <a href="#calculator" class="nav-btn-highlight">Launch Calculator</a>
             </nav>
         </div>
     </header>
@@ -30,70 +30,69 @@
         </div>
     </section>
 
-    <!-- Main App & Features Grid -->
-    <main class="main-container" id="calculator">
-        <!-- Left Column: Info & Features -->
-        <div class="info-column" id="features">
+    <!-- Section 1: Detailed Features First (Stacked Layout) -->
+    <section class="features-section" id="features">
+        <div class="section-header">
             <h2>Why CampusPool Pro?</h2>
+            <p>Engineered to eliminate awkward math and fair-share disputes during daily university commutes.</p>
+        </div>
+        
+        <div class="features-grid">
             <div class="feature-card">
                 <div class="f-icon">📏</div>
-                <div>
-                    <h3>Distance & Efficiency Engine</h3>
-                    <p>Calculate precise fuel consumption using total kilometers driven and your car's specific kilometers-per-liter (km/L) rating.</p>
-                </div>
+                <h3>Distance & Efficiency Engine</h3>
+                <p>Calculate precise fuel consumption using total kilometers driven and your car's specific kilometers-per-liter (km/L) rating.</p>
             </div>
             <div class="feature-card">
                 <div class="f-icon">💵</div>
-                <div>
-                    <h3>Driver Income & Compensation</h3>
-                    <p>Compensate the driver for vehicle depreciation, maintenance, and time with custom per-trip driver earnings.</p>
-                </div>
+                <h3>Driver Income & Compensation</h3>
+                <p>Compensate the driver for vehicle depreciation, maintenance, and time with custom per-trip driver earnings.</p>
             </div>
             <div class="feature-card">
                 <div class="f-icon">⚡</div>
-                <div>
-                    <h3>Instant Fee Splits</h3>
-                    <p>Automatically distribute mobile wallet transfer charges fairly across all riders.</p>
-                </div>
+                <h3>Instant Fee Splits</h3>
+                <p>Automatically distribute mobile wallet transfer charges fairly across all riders.</p>
             </div>
         </div>
+    </section>
 
-        <!-- Right Column: Advanced Calculator Shell -->
-        <div class="calculator-card">
+    <!-- Section 2: Large, Dedicated, Full-Width Calculator Below -->
+    <section class="calculator-section" id="calculator">
+        <div class="calculator-container">
             <div class="calc-header">
                 <h2>Advanced Trip Calculator</h2>
-                <p>Configure your route details below for an instant breakdown</p>
+                <p>Configure your route parameters below for a comprehensive expense breakdown</p>
             </div>
 
-            <div class="input-group">
+            <div class="input-group full-width">
                 <label for="totalKm">Total Distance Driven (km)</label>
                 <input type="number" id="totalKm" value="20">
             </div>
 
-            <div class="input-row">
+            <div class="input-grid-2">
                 <div class="input-group">
                     <label for="fuelEff">Fuel Efficiency (km/L)</label>
                     <input type="number" id="fuelEff" value="12">
                 </div>
                 <div class="input-group">
-                    <label for="fuelPrice">Fuel Price (per Liter)</label>
+                    <label for="fuelPrice">Fuel Price (per Liter - Rs.)</label>
                     <input type="number" id="fuelPrice" value="280">
                 </div>
             </div>
 
-            <div class="input-row">
+            <div class="input-grid-2">
                 <div class="input-group">
-                    <label for="totalPeople">Total People in Car</label>
+                    <label for="totalPeople">Total People in Car (Driver + Passengers)</label>
                     <input type="number" id="totalPeople" min="1" value="4">
                 </div>
                 <div class="input-group">
-                    <label for="driverIncome">Driver Compensation / Income</label>
+                    <label for="driverIncome">Driver Compensation / Income (Rs.)</label>
                     <input type="number" id="driverIncome" value="150">
                 </div>
             </div>
 
-            <div class="input-group">
-                <label for="transferFee">Mobile Wallet Transfer Fee</label>
+            <div class="input-group full-width">
+                <label for="transferFee">Mobile Wallet Transfer Fee (Rs.)</label>
                 <input type="number" id="transferFee" value="15">
             </div>
 
@@ -121,7 +120,7 @@
                 <div class="result-subtext" id="resSummaryText"></div>
             </div>
         </div>
-    </main>
+    </section>
 
     <!-- Footer -->
     <footer>
