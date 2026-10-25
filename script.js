@@ -1,78 +1,40 @@
-// We wrap everything in DOMContentLoaded so the buttons 100% work!
-document.addEventListener('DOMContentLoaded', function() {
-    
-    // Toggle Info Panel
-    document.getElementById('infoToggle').addEventListener('click', function() {
-        document.getElementById('infoPanel').classList.toggle('hidden');
-    });
+document.getElementById('calculateBtn').addEventListener('click', function() {
+    // Retrieve input values
+    const totalKm = parseFloat(document.getElementById('totalKm').value) || 0;
+    const fuelEff = parseFloat(document.getElementById('fuelEff').value) || 1;
+    const fuelPrice = parseFloat(document.getElementById('fuelPrice').value) || 0;
+    const totalPeople = parseInt(document.getElementById('totalPeople').value) || 1;
+    const driverIncome = parseFloat(document.getElementById('driverIncome').value) || 0;
+    const transferFee = parseFloat(document.getElementById('transferFee').value) || 0;
 
-    // Quick Fuel Add Buttons
-    const fuelInput = document.getElementById('fuel');
-    
-    document.getElementById('add500').addEventListener('click', function() {
-        const current = parseInt(fuelInput.value) || 0;
-        fuelInput.value = current + 500;
-    });
+    // Validation checks
+    if (totalPeople < 1) {
+        alert("Total people in the car must be at least 1.");
+        return;
+    }
 
-    document.getElementById('add1000').addEventListener('click', function() {
-        const current = parseInt(fuelInput.value) || 0;
-        fuelInput.value = current + 1000;
-    });
+    // 1. Calculate fuel consumption and cost
+    const totalLitres = totalKm / fuelEff;
+    const totalFuelCost = totalLitres * fuelPrice;
 
-    document.getElementById('clearFuel').addEventListener('click', function() {
-        fuelInput.value = '';
-    });
+    // 2. Add driver compensation and transfer fees to total trip expense
+    const grandTotalExpense = totalFuelCost + driverIncome + transferFee;
 
-    // Passenger Stepper Logic (+ / -)
-    const passInput = document.getElementById('passengers');
-    
-    document.getElementById('plusPass').addEventListener('click', () => {
-        passInput.value = parseInt(passInput.value) + 1;
-    });
+    // 3. Determine passenger count (Total people minus 1 driver)
+    const passengerCount = Math.max(1, totalPeople - 1);
 
-    document.getElementById('minusPass').addEventListener('click', () => {
-        if(parseInt(passInput.value) > 1) {
-            passInput.value = parseInt(passInput.value) - 1;
-        }
-    });
+    // 4. Split total cost evenly among passengers
+    const costPerPassenger = grandTotalExpense / passengerCount;
 
-    // Core Calculation Logic
-    document.getElementById('calculateBtn').addEventListener('click', function() {
-        const fuelInputVal = document.getElementById('fuel').value;
-        const passVal = document.getElementById('passengers').value;
-        const feeInputVal = document.getElementById('fee').value;
+    // 5. Display results in DOM
+    document.getElementById('resFuelLitres').innerText = totalLitres.toFixed(2) + ' Liters';
+    document.getElementById('resFuelCost').innerText = 'Rs. ' + totalFuelCost.toFixed(2);
+    document.getElementById('resDriverTotal').innerText = 'Rs. ' + driverIncome.toFixed(2);
+    document.getElementById('resPerPassenger').innerText = 'Rs. ' + costPerPassenger.toFixed(2);
 
-        const errorHint = document.getElementById('error-hint');
-        const resultContainer = document.getElementById('result-container');
-        
-        const fuel = parseInt(fuelInputVal);
-        const passengers = parseInt(passVal);
-        const fee = feeInputVal === '' ? 0 : parseInt(feeInputVal);
+    document.getElementById('resSummaryText').innerText = 
+        `Shared across ${passengerCount} passenger(s) for a ${totalKm} km trip (${totalPeople} total people in car).`;
 
-        // Check for errors
-        if (isNaN(fuel) || fuel <= 0) {
-            resultContainer.classList.add('hidden');
-            errorHint.classList.remove('hidden');
-            return;
-        }
-
-        errorHint.classList.add('hidden');
-
-        // Math calculation (Driver is added here)
-        const totalPeople = passengers + 1; 
-        const baseShare = Math.round(fuel / totalPeople);
-        const totalOwed = baseShare + fee;
-
-        document.querySelector('#final-amount span').textContent = totalOwed;
-        
-        // Explicit explanation for new users
-        document.getElementById('math-breakdown').innerHTML = 
-            `Divided among <strong>${totalPeople} total people</strong> (${passengers} passengers + 1 driver).<br> ${fuel} Rs ÷ ${totalPeople} = ${baseShare} Rs.`;
-            
-        document.getElementById('fee-breakdown').textContent = 
-            `(Base Share: ${baseShare} + Transfer Fee: ${fee})`;
-
-        resultContainer.classList.remove('hidden');
-    });
-
+    // Reveal results card
+    document.getElementById('resultsCard').classList.remove('hidden');
 });

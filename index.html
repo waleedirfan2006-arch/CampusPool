@@ -3,116 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CampusPool Pro</title>
+    <title>CampusPool Pro - Advanced Carpool Expense Splitter</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for professional typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Top Navigation -->
-    <nav class="top-nav">
-        <div class="nav-brand">
-            <span class="nav-logo">⚡</span> NED CampusPool
+    <!-- Top Navigation Bar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">🚗</span>
+                <span class="logo-text">CampusPool<span class="badge">PRO</span></span>
+            </div>
+            <nav class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#calculator" class="nav-btn-highlight">Launch App</a>
+            </nav>
         </div>
-        <div class="nav-links">
-            <span class="nav-item active">Dashboard</span>
-            <span class="nav-item">History</span>
-            <span class="nav-item">Settings</span>
-        </div>
-    </nav>
+    </header>
 
-    <main class="main-content">
-        <div class="layout-container">
-            <!-- Left Side: Landing Page Info -->
-            <div class="hero-section">
-                <div class="logo desktop-logo">🚗 CampusPool Pro</div>
-                <h1>Fair rides, <br><span class="highlight">zero math.</span></h1>
-                <p class="subtitle">The ultimate carpooling tool for students. Calculate exact shares instantly, factoring in the driver's contribution and transfer fees.</p>
-                
-                <div class="features-list">
-                    <div class="feature-item">
-                        <span class="icon">⛽</span>
-                        <div>
-                            <h4>Fair Fuel Splits</h4>
-                            <p>Automatically includes the driver in the math.</p>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <span class="icon">💸</span>
-                        <div>
-                            <h4>Transfer Fees Handled</h4>
-                            <p>No more arguing over mobile wallet transaction costs.</p>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <span class="icon">⚡</span>
-                        <div>
-                            <h4>Lightning Fast</h4>
-                            <p>Quick-tap buttons to calculate on the go.</p>
-                        </div>
-                    </div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Smart Commutes, <span class="gradient-text">Zero Friction.</span></h1>
+            <p>Calculate exact fuel splits based on distance, vehicle efficiency, fuel prices, transfer fees, and driver compensation.</p>
+        </div>
+    </section>
+
+    <!-- Main App & Features Grid -->
+    <main class="main-container" id="calculator">
+        <!-- Left Column: Info & Features -->
+        <div class="info-column" id="features">
+            <h2>Why CampusPool Pro?</h2>
+            <div class="feature-card">
+                <div class="f-icon">📏</div>
+                <div>
+                    <h3>Distance & Efficiency Engine</h3>
+                    <p>Calculate precise fuel consumption using total kilometers driven and your car's specific kilometers-per-liter (km/L) rating.</p>
+                </div>
+            </div>
+            <div class="feature-card">
+                <div class="f-icon">💵</div>
+                <div>
+                    <h3>Driver Income & Compensation</h3>
+                    <p>Compensate the driver for vehicle depreciation, maintenance, and time with custom per-trip driver earnings.</p>
+                </div>
+            </div>
+            <div class="feature-card">
+                <div class="f-icon">⚡</div>
+                <div>
+                    <h3>Instant Fee Splits</h3>
+                    <p>Automatically distribute mobile wallet transfer charges fairly across all riders.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column: Advanced Calculator Shell -->
+        <div class="calculator-card">
+            <div class="calc-header">
+                <h2>Advanced Trip Calculator</h2>
+                <p>Fill in your route details below</p>
+            </div>
+
+            <div class="input-group">
+                <label for="totalKm">Total Distance Driven (km)</label>
+                <input type="number" id="totalKm" placeholder="e.g. 25" value="20">
+            </div>
+
+            <div class="input-row">
+                <div class="input-group">
+                    <label for="fuelEff">Fuel Efficiency (km/L)</label>
+                    <input type="number" id="fuelEff" placeholder="e.g. 12" value="12">
+                </div>
+                <div class="input-group">
+                    <label for="fuelPrice">Fuel Price (per Liter)</label>
+                    <input type="number" id="fuelPrice" placeholder="e.g. 280" value="280">
                 </div>
             </div>
 
-            <!-- Right Side: The Interactive Calculator -->
-            <div class="app-shell">
-                <header>
-                    <div class="logo mobile-logo">🚗 CampusPool Pro</div>
-                    <button id="infoToggle" class="icon-btn">ℹ️ Help</button>
-                </header>
-
-                <div class="card">
-                    <div id="infoPanel" class="info-panel hidden">
-                        <h3>How it works:</h3>
-                        <p>Enter the total fuel cost. We automatically add <strong>1 Driver</strong> to your passenger count so the fuel is split fairly among everyone in the car.</p>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="fuel">Total Fuel Cost (Rs)</label>
-                        <input type="number" id="fuel" placeholder="e.g. 2000" min="0">
-                        <div class="quick-actions">
-                            <button id="add500" class="chip">+500</button>
-                            <button id="add1000" class="chip">+1000</button>
-                            <button id="clearFuel" class="chip chip-clear">Clear</button>
-                        </div>
-                    </div>
-
-                    <div class="input-group">
-                        <label>Number of Passengers (Excluding Driver)</label>
-                        <div class="stepper">
-                            <button id="minusPass" class="step-btn">−</button>
-                            <input type="number" id="passengers" value="2" readonly>
-                            <button id="plusPass" class="step-btn">+</button>
-                        </div>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="fee">Transfer Fee (Rs) <span class="optional">- Optional</span></label>
-                        <input type="number" id="fee" placeholder="e.g. 10" min="0">
-                    </div>
-                    
-                    <button id="calculateBtn">Calculate Split</button>
-
-                    <div id="error-hint" class="hidden">Please enter valid fuel amounts.</div>
-
-                    <div id="result-container" class="hidden">
-                        <h2 id="final-amount">Each passenger owes: <span></span> Rs</h2>
-                        <div class="breakdown-box">
-                            <p id="math-breakdown"></p>
-                            <p id="fee-breakdown"></p>
-                        </div>
-                    </div>
+            <div class="input-row">
+                <div class="input-group">
+                    <label for="totalPeople">Total People in Car</label>
+                    <input type="number" id="totalPeople" min="1" value="4">
                 </div>
+                <div class="input-group">
+                    <label for="driverIncome">Driver Compensation / Income</label>
+                    <input type="number" id="driverIncome" placeholder="e.g. 200" value="150">
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="transferFee">Mobile Wallet Transfer Fee</label>
+                <input type="number" id="transferFee" placeholder="e.g. 20" value="15">
+            </div>
+
+            <button id="calculateBtn" class="primary-btn">Calculate Advanced Split</button>
+
+            <!-- Results Section -->
+            <div id="resultsCard" class="results-card hidden">
+                <h3>Trip Cost Breakdown</h3>
+                <div class="result-item">
+                    <span>Total Fuel Volume Used:</span>
+                    <strong id="resFuelLitres">0.00 L</strong>
+                </div>
+                <div class="result-item">
+                    <span>Total Fuel Cost:</span>
+                    <strong id="resFuelCost">Rs. 0</strong>
+                </div>
+                <div class="result-item">
+                    <span>Driver Compensation:</span>
+                    <strong id="resDriverTotal">Rs. 0</strong>
+                </div>
+                <div class="result-item highlight-share">
+                    <span>Cost Per Passenger:</span>
+                    <strong id="resPerPassenger">Rs. 0</strong>
+                </div>
+                <div class="result-subtext" id="resSummaryText"></div>
             </div>
         </div>
     </main>
 
-    <!-- Bottom Footer -->
-    <footer class="app-footer">
-        
-        <div class="footer-links">
-            <span>Privacy Policy</span> | <span>Terms of Service</span>
-        </div>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 CampusPool Pro. Built for university commuters.</p>
     </footer>
-    
+
     <script src="script.js"></script>
 </body>
 </html>
