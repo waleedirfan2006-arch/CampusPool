@@ -1,12 +1,15 @@
 :root {
-  --bg: #1a1c1e;
+  --bg: #121417;
+  --card: #1c1f24;
   --text: #f5f6f7;
   --muted: #c5c8cc;
   --yellow: #ffd60a;
   --yellow-press: #e6c009;
   --glow: rgba(255, 214, 10, 0.45);
   --hint: #ff5c5c;
-  --radius: 12px;
+  --radius: 18px;
+  --result-bg: #2c3224;
+  --result-border: rgba(255, 214, 10, 0.5);
 }
 
 *,
@@ -22,7 +25,9 @@ body {
 }
 
 body {
-  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
   background: var(--bg);
   color: var(--text);
   display: flex;
@@ -31,41 +36,57 @@ body {
 }
 
 .page {
-  width: min(100%, 22rem);
+  width: min(100%, 24rem);
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
+  gap: 1.1rem;
 }
 
 h1 {
-  margin: 0 0 0.5rem;
-  font-size: 1.65rem;
+  margin: 0 0 0.2rem;
+  font-size: 1.75rem;
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
   text-align: center;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid #2a2e34;
+  border-radius: var(--radius);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.04) inset,
+    0 12px 28px rgba(0, 0, 0, 0.38),
+    0 28px 56px rgba(0, 0, 0, 0.28);
+  padding: 1.5rem 1.4rem 1.6rem;
 }
 
 form {
   display: flex;
   flex-direction: column;
-  gap: 0.45rem;
+  gap: 0.4rem;
 }
 
 label {
-  margin-top: 0.45rem;
+  margin-top: 0.7rem;
   font-size: 0.95rem;
   font-weight: 600;
 }
 
+label:first-of-type {
+  margin-top: 0;
+}
+
 input {
   width: 100%;
-  min-height: 3rem;
-  padding: 0.75rem 0.9rem;
+  min-height: 3.75rem;
+  padding: 1.2rem 1.25rem;
   border: 1px solid #3a3d42;
-  border-radius: var(--radius);
+  border-radius: 12px;
   background: #222528;
   color: var(--text);
-  font-size: 1.05rem;
+  font-family: inherit;
+  font-size: 1.12rem;
 }
 
 input::placeholder {
@@ -79,13 +100,14 @@ input:focus {
 }
 
 button#calculate {
-  margin-top: 1rem;
+  margin-top: 1.25rem;
   width: 100%;
-  min-height: 3.25rem;
+  min-height: 3.5rem;
   border: none;
-  border-radius: var(--radius);
+  border-radius: 12px;
   background: var(--yellow);
   color: #1a1c1e;
+  font-family: inherit;
   font-size: 1.15rem;
   font-weight: 700;
   cursor: pointer;
@@ -98,14 +120,18 @@ button#calculate:active {
 }
 
 .hint {
-  margin: 0;
+  margin: 0.9rem 0 0;
   color: var(--hint);
   font-size: 0.9rem;
 }
 
 .result {
-  margin-top: 0.25rem;
-  padding: 1rem 0.15rem 0.25rem;
+  margin-top: 0.05rem;
+  padding: 1.3rem 1.35rem;
+  border-radius: 16px;
+  background: var(--result-bg);
+  border: 1px solid var(--result-border);
+  box-shadow: inset 0 0 0 1px rgba(255, 214, 10, 0.08);
   opacity: 0;
   transform: translateY(-0.4rem);
 }
@@ -116,12 +142,18 @@ button#calculate:active {
 
 .owed {
   margin: 0;
-  font-size: 1.35rem;
+  font-size: 1.48rem;
   font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+#total-owed {
+  color: var(--yellow);
 }
 
 .breakdown {
-  margin: 0.4rem 0 0;
+  margin: 0.5rem 0 0;
   font-size: 0.95rem;
   color: var(--muted);
 }

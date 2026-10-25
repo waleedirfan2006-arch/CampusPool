@@ -26,6 +26,7 @@ Build mode: fast
 
 ## Final Review
 
+- [ ] Card layout, roomier inputs, and highlighted result panel for the demo
 - [ ] Final review complete — feedback resolved and learner confirms ready to ship
 
 ## Code Tour and App Map
@@ -41,3 +42,5 @@ Reflection: [offered/answered/declined/already covered — personal answer belon
 Activity mode: [live app and editor, explicit static fallback, focused alternative, prior practice, or recap]
 
 ## Revisions
+
+- Demo polish: form sits in a shadowed card, inputs are roomier for phone taps, and the result uses its own yellow-tinted panel. Math and stack are unchanged.

@@ -9,45 +9,47 @@
   <body>
     <main class="page">
       <h1>Commute Fare Splitter</h1>
-      <form id="fare-form" novalidate>
-        <label for="fuel">Total Fuel Cost (Rs)</label>
-        <input
-          id="fuel"
-          name="fuel"
-          type="number"
-          inputmode="numeric"
-          placeholder="1000"
-          min="1"
-          step="1"
-        />
+      <div class="card">
+        <form id="fare-form" novalidate>
+          <label for="fuel">Total Fuel Cost (Rs)</label>
+          <input
+            id="fuel"
+            name="fuel"
+            type="number"
+            inputmode="numeric"
+            placeholder="1000"
+            min="1"
+            step="1"
+          />
 
-        <label for="passengers">Number of Passengers (Excluding Driver)</label>
-        <input
-          id="passengers"
-          name="passengers"
-          type="number"
-          inputmode="numeric"
-          placeholder="3"
-          min="1"
-          step="1"
-        />
+          <label for="passengers">Number of Passengers (Excluding Driver)</label>
+          <input
+            id="passengers"
+            name="passengers"
+            type="number"
+            inputmode="numeric"
+            placeholder="3"
+            min="1"
+            step="1"
+          />
 
-        <label for="fee">Mobile Transfer Fee (Rs)</label>
-        <input
-          id="fee"
-          name="fee"
-          type="number"
-          inputmode="numeric"
-          placeholder="10"
-          min="0"
-          step="1"
-        />
+          <label for="fee">Mobile Transfer Fee (Rs)</label>
+          <input
+            id="fee"
+            name="fee"
+            type="number"
+            inputmode="numeric"
+            placeholder="10"
+            min="0"
+            step="1"
+          />
 
-        <button type="submit" id="calculate">Calculate</button>
-      </form>
-      <p id="hint" class="hint" hidden>
-        Please enter valid fuel and passenger amounts.
-      </p>
+          <button type="submit" id="calculate">Calculate</button>
+        </form>
+        <p id="hint" class="hint" hidden>
+          Please enter valid fuel and passenger amounts.
+        </p>
+      </div>
       <div id="result" class="result" hidden>
         <p class="owed">Each passenger owes: <span id="total-owed"></span></p>
         <p class="breakdown">
