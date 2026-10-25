@@ -1,0 +1,138 @@
+:root {
+  --bg: #1a1c1e;
+  --text: #f5f6f7;
+  --muted: #c5c8cc;
+  --yellow: #ffd60a;
+  --yellow-press: #e6c009;
+  --glow: rgba(255, 214, 10, 0.45);
+  --hint: #ff5c5c;
+  --radius: 12px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1.25rem 3rem;
+}
+
+.page {
+  width: min(100%, 22rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+h1 {
+  margin: 0 0 0.5rem;
+  font-size: 1.65rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+label {
+  margin-top: 0.45rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+input {
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid #3a3d42;
+  border-radius: var(--radius);
+  background: #222528;
+  color: var(--text);
+  font-size: 1.05rem;
+}
+
+input::placeholder {
+  color: #8b9096;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--yellow);
+  box-shadow: 0 0 0 3px var(--glow);
+}
+
+button#calculate {
+  margin-top: 1rem;
+  width: 100%;
+  min-height: 3.25rem;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--yellow);
+  color: #1a1c1e;
+  font-size: 1.15rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.12s ease, background 0.12s ease;
+}
+
+button#calculate:active {
+  transform: scale(0.96);
+  background: var(--yellow-press);
+}
+
+.hint {
+  margin: 0;
+  color: var(--hint);
+  font-size: 0.9rem;
+}
+
+.result {
+  margin-top: 0.25rem;
+  padding: 1rem 0.15rem 0.25rem;
+  opacity: 0;
+  transform: translateY(-0.4rem);
+}
+
+.result.is-visible {
+  animation: result-in 0.35s ease forwards;
+}
+
+.owed {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 800;
+}
+
+.breakdown {
+  margin: 0.4rem 0 0;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+@keyframes result-in {
+  from {
+    opacity: 0;
+    transform: translateY(-0.45rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
